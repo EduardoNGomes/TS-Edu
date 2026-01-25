@@ -7,8 +7,8 @@ import (
 )
 
 func main() {
-	if err := docker.CreateComposer(); err != nil {
-		fmt.Printf("Error on create docker-compose.yml: Err => %v", err)
+	if err := docker.DockerSetup(); err != nil {
+		fmt.Printf("Error on DockerSetup: %v", err)
 	}
 
 }
