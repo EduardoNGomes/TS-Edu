@@ -4,7 +4,7 @@ import (
 	"os"
 )
 
-func CreateComposer() error {
+func createComposer() error {
 	fileContent := `version: '3'
 
 services:
