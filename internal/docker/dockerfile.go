@@ -26,7 +26,7 @@ EXPOSE 8080
 CMD ["npm", "run", "start"]
 `
 
-	err := os.WriteFile("Dockerfile", []byte(fileContent), 0666)
+	err := os.WriteFile("Dockerfile", []byte(fileContent), os.ModePerm)
 
 	if err != nil {
 		return err

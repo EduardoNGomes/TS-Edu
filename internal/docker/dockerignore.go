@@ -10,7 +10,7 @@ func createDockerIgnore() error {
 coverage
 `
 
-	err := os.WriteFile(".dockerignore", []byte(fileContent), 0666)
+	err := os.WriteFile(".dockerignore", []byte(fileContent), os.ModePerm)
 
 	if err != nil {
 		return err

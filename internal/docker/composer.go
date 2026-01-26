@@ -18,7 +18,7 @@ services:
       - POSTGRESQL_DATABASE=db
 	`
 
-	err := os.WriteFile("docker-compose.yml", []byte(fileContent), 0666)
+	err := os.WriteFile("docker-compose.yml", []byte(fileContent), os.ModePerm)
 
 	if err != nil {
 		return err
