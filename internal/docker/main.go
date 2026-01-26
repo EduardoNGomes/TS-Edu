@@ -4,15 +4,15 @@ import "fmt"
 
 func DockerSetup() error {
 	if err := createComposer(); err != nil {
-		fmt.Printf("Error on create docker-compose.yml: Err => %v", err)
+		return fmt.Errorf("Error on create docker-compose.yml: Err => %w", err)
 	}
 
 	if err := createDockerfile(); err != nil {
-		fmt.Printf("Error on create Dockerfile: Err => %v", err)
+		return fmt.Errorf("Error on create Dockerfile: Err => %w", err)
 	}
 
 	if err := createDockerIgnore(); err != nil {
-		fmt.Printf("Error on create DockerIgnore: Err => %v", err)
+		return fmt.Errorf("Error on create DockerIgnore: Err => %w", err)
 	}
 
 	return nil
