@@ -5,23 +5,20 @@ import (
 	"os/exec"
 )
 
-func installDevDependencies() error {
+func installDependencies() error {
 	libs := []string{
-		"@types/bcryptjs",
-		"@types/node",
-		"@types/supertest",
-		"@vitest/coverage-v8",
-		"prisma",
-		"supertest",
-		"tsx",
-		"typescript",
-		"vite-tsconfig-paths",
-		"vitest",
+		"@fastify/cookie",
+		"@fastify/jwt",
+		"@prisma/client",
+		"bcryptjs",
+		"fastify",
+		"fastify-multer",
+		"multer",
+		"tsdown",
+		"zod",
 	}
 
 	args := append([]string{"install"}, libs...)
-
-	args = append(args, "-D")
 
 	cmd := exec.Command("pnpm", args...)
 
