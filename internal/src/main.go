@@ -14,7 +14,7 @@ func CreateSRCDIR() error {
 		return fmt.Errorf("Failed to create directory src: %w", err)
 	}
 
-	if err := env.CreateEnvDIR(dir); err != nil {
+	if err := env.CreateEnvConfig(dir); err != nil {
 		return fmt.Errorf("Failed to create dir env src: %w", err)
 	}
 
