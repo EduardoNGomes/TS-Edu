@@ -6,6 +6,7 @@ import (
 	"gitbhub.com/eduardongomes/ts-edu/internal/dependencies"
 	"gitbhub.com/eduardongomes/ts-edu/internal/docker"
 	"gitbhub.com/eduardongomes/ts-edu/internal/github"
+	"gitbhub.com/eduardongomes/ts-edu/internal/src"
 )
 
 func main() {
@@ -20,5 +21,9 @@ func main() {
 
 	if err := dependencies.InstallCoreDependencies(); err != nil {
 		fmt.Printf("Error on Install Deps: %v", err)
+	}
+
+	if err := src.CreateSRCDIR(); err != nil {
+		fmt.Printf("Error on create SRC: %v", err)
 	}
 }

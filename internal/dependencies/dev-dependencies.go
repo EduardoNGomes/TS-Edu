@@ -17,6 +17,7 @@ func installDevDependencies() error {
 		"typescript",
 		"vite-tsconfig-paths",
 		"vitest",
+		"dotenv",
 	}
 
 	args := append([]string{"install"}, libs...)
