@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 
+	"gitbhub.com/eduardongomes/ts-edu/internal/configs"
 	"gitbhub.com/eduardongomes/ts-edu/internal/dependencies"
 	"gitbhub.com/eduardongomes/ts-edu/internal/docker"
 	"gitbhub.com/eduardongomes/ts-edu/internal/github"
@@ -25,5 +26,9 @@ func main() {
 
 	if err := src.CreateSRCDIR(); err != nil {
 		fmt.Printf("Error on create SRC: %v", err)
+	}
+
+	if err := configs.CreateConfigFiles(); err != nil {
+		fmt.Printf("Error on create Configs: %v", err)
 	}
 }
