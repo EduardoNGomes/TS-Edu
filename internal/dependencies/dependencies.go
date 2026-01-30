@@ -13,7 +13,6 @@ func installDependencies() error {
 		"bcryptjs",
 		"fastify",
 		"fastify-multer",
-		"multer",
 		"tsdown",
 		"zod",
 	}
