@@ -13,15 +13,15 @@ func CreateDomainDIR(dir string) error {
 	}
 
 	if err := createErrors(domainDIR); err != nil {
-		return err
+		return fmt.Errorf("ERRORS -> %w", err)
 	}
 
 	if err := createRepositories(domainDIR); err != nil {
-		return err
+		return fmt.Errorf("REPOSITORIES -> %w", err)
 	}
 
 	if err := createServices(domainDIR); err != nil {
-		return err
+		return fmt.Errorf("SERVICES -> %w", err)
 	}
 
 	return nil
