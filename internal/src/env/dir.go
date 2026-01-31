@@ -17,6 +17,7 @@ func createEnvDIR(dir string) error {
 	fileContent := `import { z } from "zod";
 
 const envSchema = z.object({
+  JWT_SECRET:z.string(),
   NODE_ENV: z.enum(["dev", "production", "test"]).default("dev"),
   PORT: z.coerce.number().default(3333),
 });

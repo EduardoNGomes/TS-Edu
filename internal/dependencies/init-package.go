@@ -67,8 +67,8 @@ func initPackageJSON() error {
 					scripts["dev"] = "tsx watch --env-file=.env src/server.ts"
 					scripts["start"] = "node --env-file=.env build/server.js"
 					scripts["build"] = "tsdown src"
-					scripts["test"] = "vistest run"
-					scripts["test:watch"] = "vistest"
+					scripts["test"] = "vitest run"
+					scripts["test:watch"] = "vitest"
 					scripts["test:coverage"] = "vitest run --coverage"
 				}
 			}

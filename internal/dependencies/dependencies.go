@@ -12,7 +12,7 @@ func installDependencies() error {
 		"@prisma/client",
 		"bcryptjs",
 		"fastify",
-		"fastify-multer",
+		"@fastify/multipart",
 		"tsdown",
 		"zod",
 	}
