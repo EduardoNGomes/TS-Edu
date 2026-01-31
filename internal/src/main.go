@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"os"
 
+	"gitbhub.com/eduardongomes/ts-edu/internal/src/domain"
 	"gitbhub.com/eduardongomes/ts-edu/internal/src/env"
 	"gitbhub.com/eduardongomes/ts-edu/internal/src/types"
 )
@@ -23,5 +24,8 @@ func CreateSRCDIR() error {
 		return fmt.Errorf("Failed to create dir src/@types: %w", err)
 	}
 
+	if err := domain.CreateDomainDIR(dir); err != nil {
+		return fmt.Errorf("Failed to create dir src/domain: %w", err)
+	}
 	return nil
 }
