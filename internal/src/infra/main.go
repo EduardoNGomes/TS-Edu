@@ -16,5 +16,9 @@ func CreateInfraDIR(dir string) error {
 		return fmt.Errorf("FACTORIES -> %w", err)
 	}
 
+	if err := createLibs(infraDIR); err != nil {
+		return fmt.Errorf("LIBS -> %w", err)
+	}
+
 	return nil
 }
