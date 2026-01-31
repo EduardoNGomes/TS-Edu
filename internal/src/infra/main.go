@@ -26,5 +26,9 @@ func CreateInfraDIR(dir string) error {
 		return fmt.Errorf("HTTP -> %w", err)
 	}
 
+	if err := createRepositories(infraDIR); err != nil {
+		return fmt.Errorf("REPOSITORIES -> %w", err)
+	}
+
 	return nil
 }
