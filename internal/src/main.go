@@ -6,6 +6,7 @@ import (
 
 	"gitbhub.com/eduardongomes/ts-edu/internal/src/domain"
 	"gitbhub.com/eduardongomes/ts-edu/internal/src/env"
+	"gitbhub.com/eduardongomes/ts-edu/internal/src/infra"
 	"gitbhub.com/eduardongomes/ts-edu/internal/src/types"
 )
 
@@ -26,6 +27,10 @@ func CreateSRCDIR() error {
 
 	if err := domain.CreateDomainDIR(dir); err != nil {
 		return fmt.Errorf("Failed to create dir src/domain: %w", err)
+	}
+
+	if err := infra.CreateInfraDIR(dir); err != nil {
+		return fmt.Errorf("Failed to create dir src/infra: %w", err)
 	}
 	return nil
 }
