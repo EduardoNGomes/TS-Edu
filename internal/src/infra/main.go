@@ -3,6 +3,8 @@ package infra
 import (
 	"fmt"
 	"os"
+
+	"gitbhub.com/eduardongomes/ts-edu/internal/src/infra/http"
 )
 
 func CreateInfraDIR(dir string) error {
@@ -18,6 +20,10 @@ func CreateInfraDIR(dir string) error {
 
 	if err := createLibs(infraDIR); err != nil {
 		return fmt.Errorf("LIBS -> %w", err)
+	}
+
+	if err := http.CreateHTTP(infraDIR); err != nil {
+		return fmt.Errorf("HTTP -> %w", err)
 	}
 
 	return nil
