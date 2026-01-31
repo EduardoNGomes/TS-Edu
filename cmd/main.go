@@ -2,6 +2,8 @@ package main
 
 import (
 	"fmt"
+	"os"
+	"os/exec"
 
 	"gitbhub.com/eduardongomes/ts-edu/internal/configs"
 	"gitbhub.com/eduardongomes/ts-edu/internal/dependencies"
@@ -31,4 +33,14 @@ func main() {
 	if err := configs.CreateConfigFiles(); err != nil {
 		fmt.Printf("Error on create Configs: %v", err)
 	}
+
+	cmd := exec.Command("pnpm", "lint")
+
+	cmd.Stdout = os.Stdout
+	cmd.Stderr = os.Stderr
+
+	if err := cmd.Run(); err != nil {
+		fmt.Printf("Error on apply lint")
+	}
+
 }

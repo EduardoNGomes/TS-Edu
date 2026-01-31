@@ -21,9 +21,7 @@ func createTSConfig() error {
   }
 }
 `
-	err := os.WriteFile("tsconfig.json", []byte(fileContent), os.ModePerm)
-
-	if err != nil {
+	if err := os.WriteFile("tsconfig.json", []byte(fileContent), os.ModePerm); err != nil {
 		return err
 	}
 

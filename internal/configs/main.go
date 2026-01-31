@@ -9,6 +9,10 @@ func CreateConfigFiles() error {
 		return err
 	}
 
+	if err := createBiome(); err != nil {
+		return err
+	}
+
 	return nil
 
 }

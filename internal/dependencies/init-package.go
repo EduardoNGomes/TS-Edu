@@ -70,6 +70,7 @@ func initPackageJSON() error {
 					scripts["test"] = "vitest run"
 					scripts["test:watch"] = "vitest"
 					scripts["test:coverage"] = "vitest run --coverage"
+					scripts["lint"] = "biome check --write --unsafe"
 				}
 			}
 		default:
