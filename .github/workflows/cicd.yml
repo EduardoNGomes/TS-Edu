@@ -1,0 +1,76 @@
+name: Release
+
+on:
+  release:
+    types: [published]
+
+permissions:
+  contents: write
+  packages: write
+
+jobs:
+  test:
+    name: Run Tests
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Go
+        uses: actions/setup-go@v5
+        with:
+          go-version: "1.25"
+      
+      - name: Run Tests
+        run: go test -v ./...
+
+  build-and-release:
+    name: Build and Release
+    needs: test
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        include:
+          - goos: linux
+            goarch: amd64
+            asset_name: ts-edu-linux-amd64
+            installer_name: install-linux-amd64.sh
+          - goos: linux
+            goarch: arm64
+            asset_name: ts-edu-linux-arm64
+            installer_name: install-linux-arm64.sh
+          - goos: windows
+            goarch: amd64
+            asset_name: ts-edu-windows-amd64.exe
+            installer_name: install-windows-amd64.ps1
+          - goos: darwin
+            goarch: amd64
+            asset_name: ts-edu-darwin-amd64
+            installer_name: install-darwin-amd64.sh
+          - goos: darwin
+            goarch: arm64
+            asset_name: ts-edu-darwin-arm64
+            installer_name: install-darwin-arm64.sh
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Go
+        uses: actions/setup-go@v5
+        with:
+          go-version: "1.25"
+
+      - name: Build Binary
+        env:
+          GOOS: ${{ matrix.goos }}
+          GOARCH: ${{ matrix.goarch }}
+        run: |
+          go build -ldflags="-s -w" -o ${{ matrix.asset_name }} ./cmd
+
+      - name: Upload Release Asset
+        uses: softprops/action-gh-release@v2
+        if: startsWith(github.ref, 'refs/tags/')
+        with:
+          files: |
+            ${{ matrix.asset_name }}
+            ${{ matrix.installer_name }}
