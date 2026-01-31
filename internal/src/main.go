@@ -5,6 +5,7 @@ import (
 	"os"
 
 	"gitbhub.com/eduardongomes/ts-edu/internal/src/env"
+	"gitbhub.com/eduardongomes/ts-edu/internal/src/types"
 )
 
 func CreateSRCDIR() error {
@@ -15,7 +16,11 @@ func CreateSRCDIR() error {
 	}
 
 	if err := env.CreateEnvConfig(dir); err != nil {
-		return fmt.Errorf("Failed to create dir env src: %w", err)
+		return fmt.Errorf("Failed to create dir src/env: %w", err)
+	}
+
+	if err := types.CreateTypesDIR(dir); err != nil {
+		return fmt.Errorf("Failed to create dir src/@types: %w", err)
 	}
 
 	return nil
