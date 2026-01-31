@@ -16,5 +16,9 @@ func CreateDomainDIR(dir string) error {
 		return err
 	}
 
+	if err := createRepositories(domainDIR); err != nil {
+		return err
+	}
+
 	return nil
 }
