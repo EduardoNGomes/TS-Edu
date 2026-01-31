@@ -53,13 +53,43 @@ To run the TS-Edu generator and the generated boilerplate, you will need:
 
 ### Installation
 
-Clone the repository and build the generator:
+#### Option 1: Download Pre-built Binary (Recommended)
+
+You can download the latest version of **TS-Edu** directly from the [GitHub Releases](https://github.com/eduardongomes/ts-edu/releases) page. We provide pre-built binaries for Linux, macOS, and Windows.
+
+1. Download the binary for your OS/Architecture (e.g., `ts-edu-linux-amd64`).
+2. Make it executable (Linux/macOS).
+3. Move it to a folder in your system's `$PATH`.
+
+**Linux / macOS:**
+
+```bash
+# Example for Linux AMD64
+wget https://github.com/eduardongomes/ts-edu/releases/latest/download/ts-edu-linux-amd64
+chmod +x ts-edu-linux-amd64
+sudo mv ts-edu-linux-amd64 /usr/local/bin/ts-edu
+
+# Verify installation
+ts-edu --help
+```
+
+**Windows:**
+
+1. Download `ts-edu-windows-amd64.exe`.
+2. Rename it to `ts-edu.exe`.
+3. Move it to a folder that is in your system's `PATH` (e.g., `C:\Windows\System32` or a custom tools folder).
+
+#### Option 2: Build from Source
+
+If you have Go installed and prefer to build from the source code:
 
 ```bash
 git clone https://github.com/eduardongomes/ts-edu.git
 cd ts-edu
-go build -o ts-edu
+go build -o ts-edu ./cmd
 ```
+
+Then move the binary to your PATH (e.g., `sudo mv ts-edu /usr/local/bin/`).
 
 ### Usage
 
