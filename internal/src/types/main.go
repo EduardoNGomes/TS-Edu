@@ -9,7 +9,7 @@ func CreateTypesDIR(dir string) error {
 	typesDIR := dir + "/" + "@types"
 
 	if err := os.Mkdir(typesDIR, os.ModePerm); err != nil {
-		return fmt.Errorf("Failed to create directory env: %w", err)
+		return fmt.Errorf("Failed to create directory @types: %w", err)
 	}
 
 	if err := createJWTType(typesDIR); err != nil {

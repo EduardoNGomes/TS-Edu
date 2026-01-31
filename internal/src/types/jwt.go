@@ -21,9 +21,7 @@ declare module "@fastify/jwt" {
 }
 `
 
-	err := os.WriteFile(filepath, []byte(fileContent), os.ModePerm)
-
-	if err != nil {
+	if err := os.WriteFile(filepath, []byte(fileContent), os.ModePerm); err != nil {
 		return fmt.Errorf("ERR on create fastify-jwt.d.ts : %w", err)
 	}
 
