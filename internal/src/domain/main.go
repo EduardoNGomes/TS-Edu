@@ -20,5 +20,9 @@ func CreateDomainDIR(dir string) error {
 		return err
 	}
 
+	if err := createServices(domainDIR); err != nil {
+		return err
+	}
+
 	return nil
 }
