@@ -9,6 +9,7 @@ import (
 	"gitbhub.com/eduardongomes/ts-edu/internal/dependencies"
 	"gitbhub.com/eduardongomes/ts-edu/internal/docker"
 	"gitbhub.com/eduardongomes/ts-edu/internal/github"
+	"gitbhub.com/eduardongomes/ts-edu/internal/skill"
 	"gitbhub.com/eduardongomes/ts-edu/internal/src"
 )
 
@@ -32,6 +33,10 @@ func main() {
 
 	if err := configs.CreateConfigFiles(); err != nil {
 		fmt.Printf("Error on create Configs: %v", err)
+	}
+
+	if err := skill.CreateSkill(); err != nil {
+		fmt.Printf("Error on create skill: %v", err)
 	}
 
 	cmd := exec.Command("pnpm", "lint")
