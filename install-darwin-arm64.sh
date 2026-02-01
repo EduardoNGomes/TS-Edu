@@ -30,9 +30,6 @@ if [ ! -f "./$bin" ]; then
     exit 1
 fi
 
-echo "🔓 Removing macOS quarantine attribute..."
-xattr -d com.apple.quarantine "./$bin" 2>/dev/null || true
-
 if [ ! -f "$install_path" ]; then
     echo "📦 Installing ts-edu to /usr/local/bin..."
 else
@@ -40,6 +37,10 @@ else
 fi
 
 sudo cp "./$bin" "$install_path"
+
+echo "🔓 Removing macOS quarantine attribute..."
+sudo xattr -dr com.apple.quarantine "$INSTALL_PATH" || true
+
 sudo chmod 755 "$install_path"
 
 echo

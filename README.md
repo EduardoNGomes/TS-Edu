@@ -73,6 +73,13 @@ sudo mv ts-edu-linux-amd64 /usr/local/bin/ts-edu
 ts-edu --help
 ```
 
+**macOS users may need to approve the binary:**
+
+If macOS blocks execution, run:
+```bash
+sudo xattr -dr com.apple.quarantine /usr/local/bin/ts-edu
+```
+
 **Windows:**
 
 1. Download `ts-edu-windows-amd64.exe`.
