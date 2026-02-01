@@ -1,37 +1,56 @@
 $bin = "ts-edu-windows-amd64.exe"
 $target_name = "ts-edu.exe"
-# Installation to a common path in System32 or similar requires Admin, but often handled differently.
-# Here we'll try to find a suitable path or just user's local bin if exists.
-# For simplicity matching the 'system install' pattern, we'll assume C:\Windows\System32 or allow user to pick.
-# Actually, strict equivalent to /usr/local/bin is hard in Windows without standard paths.
-# We will check if a directory is in PATH or suggest one.
+$repo_url = "https://github.com/edu-gomes/ts-edu"
 
-# Let's try to install to a folder in Program Files and add to PATH, or just copy to where the script is run?
-# The request was "follow the pattern". Pattern is: copy to global path.
-# We'll assume usage of a common tools folder or C:\Windows (dangerous/messy).
-
-# Safer approach for Windows script:
-Write-Host "Installing $bin..."
+Write-Host "────────────────────────────────────────────"
+Write-Host "🚀 Installing ts-edu"
+Write-Host ""
+Write-Host "ℹ️  ts-edu is an open-source CLI tool."
+Write-Host "ℹ️  Source code and documentation:"
+Write-Host "🔗 $repo_url"
+Write-Host ""
+Write-Host "ℹ️  This binary was built from the official"
+Write-Host "ℹ️  GitHub repository and distributed via"
+Write-Host "ℹ️  GitHub Releases."
+Write-Host ""
+Write-Host "ℹ️  The binary will be installed for the"
+Write-Host "ℹ️  current user and added to your PATH."
+Write-Host "────────────────────────────────────────────"
+Write-Host ""
 
 if (-not (Test-Path ".\$bin")) {
-    Write-Error "Binary $bin not found in current directory."
+    Write-Error "❌ Binary '$bin' not found in the current directory."
+    Write-Host "👉 Download it from:"
+    Write-Host "   $repo_url/releases"
     exit 1
 }
 
-# Determine install path (user profile bin is safer)
+# Safer per-user install directory
 $install_dir = "$env:LOCALAPPDATA\ts-edu\bin"
+
 if (-not (Test-Path $install_dir)) {
+    Write-Host "📁 Creating install directory: $install_dir"
     New-Item -ItemType Directory -Force -Path $install_dir | Out-Null
 }
 
 $dest = Join-Path $install_dir $target_name
+
+Write-Host "📦 Installing ts-edu..."
 Copy-Item -Path ".\$bin" -Destination $dest -Force
 
-# Add to PATH if not present
+# Add directory to PATH if not present
 $userPath = [Environment]::GetEnvironmentVariable("Path", "User")
 if ($userPath -notlike "*$install_dir*") {
-    [Environment]::SetEnvironmentVariable("Path", "$userPath;$install_dir", "User")
-    Write-Host "Added $install_dir to User PATH. You may need to restart your terminal."
+    [Environment]::SetEnvironmentVariable(
+        "Path",
+        "$userPath;$install_dir",
+        "User"
+    )
+    Write-Host "🔧 Added ts-edu to your PATH"
+    Write-Host "👉 Restart your terminal to use 'ts-edu'"
 }
 
-Write-Host "✔ Installation complete! Installed to $dest"
+Write-Host ""
+Write-Host "✅ Installation complete!"
+Write-Host "👉 Run 'ts-edu' to get started"
+Write-Host "📘 Docs & source: $repo_url"
