@@ -39,7 +39,7 @@ fi
 sudo cp "./$bin" "$install_path"
 
 echo "🔓 Removing macOS quarantine attribute..."
-sudo xattr -dr com.apple.quarantine "$INSTALL_PATH" || true
+sudo xattr -dr com.apple.quarantine "$install_path" || true
 
 sudo chmod 755 "$install_path"
 
